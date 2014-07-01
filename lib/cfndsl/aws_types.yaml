@@ -153,7 +153,7 @@ Resources:
       SecondaryPrivateIpAddressCount: Integer
       SourceDestCheck: Boolean
       SubnetId: String
-      Tags: [ EC2Tags ]
+      Tags: [ EC2Tag ]
   "AWS::EC2::NetworkInterfaceAttachment" :
     Properties:
       DeleteOnTermination: Boolean
