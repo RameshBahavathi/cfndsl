@@ -55,7 +55,7 @@ Resources:
     AutoScalingGroupName: String
     BreachDuration: String
     UpperThreshold: String
-    LowerThreshold: String   
+    LowerThreshold: String
   "AWS::CloudFormation::Stack" :
    Properties:
     TemplateUrl: String
@@ -69,7 +69,7 @@ Resources:
    Attributes:
     Data: String
   "AWS::CloudFormation::WaitConditionHandle" :
-   Properties: {}    
+   Properties: {}
   "AWS::CloudFront::Distribution" :
    Properties:
     DistributionConfig: String
@@ -112,7 +112,7 @@ Resources:
     KernelId: String
     KeyName: String
     Monitoring: String
-    NetworkInterfaces: JSON
+    NetworkInterfaces: [ EC2NetworkInterface ]
     PlacementGroupName: String
     PrivateIpAddress: String
     RamDiskId: String
@@ -144,6 +144,22 @@ Resources:
      RuleAction: String
      RuleNumber: Integer
      Protocol: Integer
+  "AWS::EC2::NetworkInterface" :
+    Properties:
+      Description: String
+      GroupSet: [ String ]
+      PrivateIpAddress: String
+      PrivateIpAddresses: [ PrivateIpAddressSpecification ]
+      SecondaryPrivateIpAddressCount: Integer
+      SourceDestCheck: Boolean
+      SubnetId: String
+      Tags: [ EC2Tags ]
+  "AWS::EC2::NetworkInterfaceAttachment" :
+    Properties:
+      DeleteOnTermination: Boolean
+      DeviceIndex: String
+      InstanceId: String
+      NetworkInterfaceId: String
   "AWS::EC2::Route" :
    Properties:
     DestinationCidrBlock: String
@@ -156,7 +172,7 @@ Resources:
     VpcId: String
     Tags: [ EC2Tag ]
   "AWS::EC2::SecurityGroup" :
-    Properties: 
+    Properties:
      GroupDescription: String
      SecurityGroupIngress: [ EC2SecurityGroupRule ]
      SecurityGroupEgress: [ EC2SecurityGroupRule ]
@@ -308,7 +324,7 @@ Resources:
     Path: String
     Roles: [ String ]
    Attributes:
-    Arn : String    
+    Arn : String
   "AWS::IAM::Policy" :
    Properties:
     PolicyName: String
@@ -321,7 +337,7 @@ Resources:
     Path: String
     Policies: [ IAMEmbeddedPolicy ]
    Attributes:
-    Arn : String    
+    Arn : String
   "AWS::IAM::UserToGroupAddition" :
    Properties:
     GroupName: String
@@ -402,7 +418,7 @@ Resources:
     DomainName: String
     WebsiteUrl: String
   "AWS::S3::BucketPolicy" :
-   Properties: 
+   Properties:
     PolicyDocument: JSON
     Bucket: String
   "AWS::SDB::Domain" :
@@ -432,7 +448,7 @@ Types:
  JSON:    JSON
  Integer: Integer
  Number:  Number
- BlockDeviceMapping: 
+ BlockDeviceMapping:
   DeviceName: String
   VirtualName: String
   Ebs: BlockDeviceTemplate
@@ -544,3 +560,17 @@ Types:
  EC2Icmp:
   Code: Integer
   Type: Integer
+ PrivateIpAddressSpecification:
+  PrivateIpAddress: String
+  Primary: Boolean
+ EC2NetworkInterface:
+  AssociatePublicIpAddress: Boolean
+  DeleteOnTermination: Boolean
+  Description: String
+  DeviceIndex: String
+  GroupSet: [ String ]
+  NetworkInterfaceId: String
+  PrivateIpAddress : String
+  PrivateIpAddresses: [ PrivateIpAddressSpecification ]
+  SecondaryPrivateIpAddressCount: Integer
+  SubnetId: String
